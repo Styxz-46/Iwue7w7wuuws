@@ -831,7 +831,7 @@
     <!-- Products Section -->
     <section class="container">
         <h2 class="section-title">
-            <i class="fas fa-star"></i> Aplikasi Terpopuler
+            <i class="fas fa-star"></i> App Premium
         </h2>
         <div class="products-grid" id="productsGrid">
             <!-- Products will be loaded by JavaScript -->
@@ -1218,13 +1218,13 @@
             let message = `Halo, saya ingin membeli aplikasi premium dari TakiStore:\n\n`;
             
             cart.forEach(item => {
-                message += `Barang:${item.name}*\n`;
+                message += `Barang: ${item.name}\n`;
                 message += `Jumlah: ${item.quantity}x\n`;
                 message += `Subtotal: ${formatRupiah(item.price * item.quantity)}\n\n`;
             });
             
             const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            message += `💰 *Total Pembayaran: ${formatRupiah(total)}*\n\n`;
+            message += `Total Pembayaran: ${formatRupiah(total)}\n\n`;
             message += `Silakan konfirmasi ketersediaan dan cara pembayaran. Terima kasih!`;
             
             return encodeURIComponent(message);
