@@ -457,36 +457,6 @@
             font-size: 1.5rem;
         }
         
-        .customer-info {
-            margin-bottom: 20px;
-        }
-        
-        .form-group {
-            margin-bottom: 16px;
-        }
-        
-        .form-label {
-            display: block;
-            margin-bottom: 6px;
-            font-weight: 500;
-            color: var(--dark);
-        }
-        
-        .form-input {
-            width: 100%;
-            padding: 12px 16px;
-            border: 1px solid var(--light-gray);
-            border-radius: 12px;
-            font-family: 'Inter', sans-serif;
-            transition: var(--transition);
-        }
-        
-        .form-input:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
-        }
-        
         .confirm-btn {
             width: 100%;
             padding: 16px;
@@ -839,7 +809,7 @@
                     <div class="logo-icon">
                         <i class="fas fa-cube"></i>
                     </div>
-                    <span class="logo-text">AppVault</span>
+                    <span class="logo-text">TakiStore</span>
                 </a>
                 <div class="nav-cart" id="openCart">
                     <i class="fas fa-shopping-bag"></i>
@@ -895,17 +865,6 @@
                     <span class="total-amount" id="totalPrice">Rp 0</span>
                 </div>
                 
-                <div class="customer-info">
-                    <div class="form-group">
-                        <label class="form-label" for="phone">Nomor WhatsApp</label>
-                        <input type="tel" id="phone" class="form-input" placeholder="Contoh: 081234567890" required>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label" for="email">Email</label>
-                        <input type="email" id="email" class="form-input" placeholder="nama@email.com" required>
-                    </div>
-                </div>
-                
                 <button class="confirm-btn" id="confirmBtn" disabled>
                     <i class="fab fa-whatsapp"></i> Konfirmasi via WhatsApp
                 </button>
@@ -936,31 +895,18 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h4>AppVault</h4>
-                    <p>Marketplace terpercaya untuk aplikasi premium dengan kualitas terbaik dan harga kompetitif.</p>
-                    <div class="social-links">
-                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
+                    <h4>Tentang</h4>
+                    <p>Kami menyediakan berbagai App Premium dengan harga terjangkau dan aman digunakan Fokus kami adalah memberikan kemudahan akses aplikasi premium.</p>
                 </div>
                 <div class="footer-section">
                     <h4>Kontak</h4>
-                    <p><i class="fas fa-phone"></i> +62 812-3456-7890</p>
-                    <p><i class="fas fa-envelope"></i> support@appvault.com</p>
-                    <p><i class="fas fa-map-marker-alt"></i> Jakarta, Indonesia</p>
-                </div>
-                <div class="footer-section">
-                    <h4>Layanan</h4>
-                    <p>Garansi 30 Hari</p>
-                    <p>Dukungan Teknis</p>
-                    <p>Pembaruan Gratis</p>
-                    <p>Bantuan Instalasi</p>
+                    <p><i class="fas fa-phone"></i> +62 877-1681-7586</p>
+                    <p><i class="fas fa-envelope"></i> support@takistore.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Indonesia</p>
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2023 AppVault. All rights reserved.</p>
+                <p>&copy; 2026 TakiStore. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -976,56 +922,56 @@
         const products = [
             {
                 id: 1,
-                name: "Alight Motion",
-                description: "Aplikasi desain grafis lengkap dengan AI tools untuk desainer profesional.",
+                name: "Alight Motion Pro",
+                description: "Aplikasi edit video premium dengan efek profesional untuk content creator.",
                 price: 3000,
-                image: "alight.png", // Menggunakan file lokal
+                image: "alight.png",
                 category: "Video Editing"
             },
             {
                 id: 2,
-                name: "VideoEditor Pro",
-                description: "Edit video 4K dengan efek cinematic dan library musik premium.",
-                price: 499000,
-                image: "baso.png", // Menggunakan file lokal
-                category: "Video"
+                name: "CapCut Premium",
+                description: "Edit video dengan template eksklusif dan efek high-quality.",
+                price: 25000,
+                image: "capcut.png",
+                category: "Video Editing"
             },
             {
                 id: 3,
-                name: "CodeMaster IDE",
-                description: "Integrated Development Environment dengan AI assistant untuk developer.",
-                price: 299000,
-                image: "baso.png", // Menggunakan file lokal
-                category: "Development"
+                name: "KineMaster Pro",
+                description: "Aplikasi edit video lengkap dengan chroma key dan multi-layer.",
+                price: 35000,
+                image: "kinemaster.png",
+                category: "Video Editing"
             },
             {
                 id: 4,
-                name: "FinanceManager Pro",
-                description: "Kelola keuangan pribadi dan bisnis dengan analytics dashboard lengkap.",
-                price: 249000,
-                image: "baso.png", // Menggunakan file lokal
-                category: "Productivity"
+                name: "VN Editor Pro",
+                description: "Edit video dengan AI tools dan library musik premium.",
+                price: 20000,
+                image: "vn.png",
+                category: "Video Editing"
             },
             {
                 id: 5,
-                name: "PhotoLab AI",
-                description: "Edit foto dengan artificial intelligence dan preset profesional.",
-                price: 199000,
-                image: "baso.png", // Menggunakan file lokal
-                category: "Photo"
+                name: "InShot Pro",
+                description: "Edit foto dan video dengan filter eksklusif dan efek khusus.",
+                price: 15000,
+                image: "inshot.png",
+                category: "Photo & Video"
             },
             {
                 id: 6,
-                name: "SecureVPN Plus",
-                description: "VPN premium dengan kecepatan tinggi dan enkripsi military-grade.",
-                price: 179000,
-                image: "baso.png", // Menggunakan file lokal
-                category: "Security"
+                name: "Adobe Premiere Pro",
+                description: "Software edit video profesional untuk filmmaker dan editor.",
+                price: 50000,
+                image: "premiere.png",
+                category: "Professional"
             }
         ];
 
         // Data keranjang dari localStorage
-        let cart = JSON.parse(localStorage.getItem('appvault_cart')) || [];
+        let cart = JSON.parse(localStorage.getItem('takistore_cart')) || [];
         
         // DOM Elements
         const productsGrid = document.getElementById('productsGrid');
@@ -1033,8 +979,6 @@
         const emptyCart = document.getElementById('emptyCart');
         const cartCount = document.getElementById('cartCount');
         const totalPrice = document.getElementById('totalPrice');
-        const phoneInput = document.getElementById('phone');
-        const emailInput = document.getElementById('email');
         const confirmBtn = document.getElementById('confirmBtn');
         const openCartBtn = document.getElementById('openCart');
         const closeCartBtn = document.getElementById('closeCart');
@@ -1108,7 +1052,7 @@
             }
             
             // Simpan ke localStorage
-            localStorage.setItem('appvault_cart', JSON.stringify(cart));
+            localStorage.setItem('takistore_cart', JSON.stringify(cart));
             
             // Update tampilan keranjang
             updateCart();
@@ -1140,9 +1084,7 @@
                 confirmBtn.disabled = true;
             } else {
                 emptyCart.style.display = 'none';
-                
-                // Periksa apakah form sudah diisi
-                checkFormValidity();
+                confirmBtn.disabled = false;
                 
                 // Render item di keranjang
                 renderCartItems();
@@ -1244,7 +1186,7 @@
             const item = cart.find(item => item.id === itemId);
             if (item) {
                 item.quantity += 1;
-                localStorage.setItem('appvault_cart', JSON.stringify(cart));
+                localStorage.setItem('takistore_cart', JSON.stringify(cart));
                 updateCart();
             }
         }
@@ -1259,7 +1201,7 @@
                     // Jika jumlah menjadi 0, hapus item dari keranjang
                     cart = cart.filter(cartItem => cartItem.id !== itemId);
                 }
-                localStorage.setItem('appvault_cart', JSON.stringify(cart));
+                localStorage.setItem('takistore_cart', JSON.stringify(cart));
                 updateCart();
             }
         }
@@ -1267,33 +1209,22 @@
         // Hapus item dari keranjang
         function removeItem(itemId) {
             cart = cart.filter(item => item.id !== itemId);
-            localStorage.setItem('appvault_cart', JSON.stringify(cart));
+            localStorage.setItem('takistore_cart', JSON.stringify(cart));
             updateCart();
-        }
-        
-        // Periksa validitas form
-        function checkFormValidity() {
-            const isPhoneValid = phoneInput.value.trim() !== '' && phoneInput.value.length >= 10;
-            const isEmailValid = emailInput.value.trim() !== '' && emailInput.value.includes('@');
-            
-            confirmBtn.disabled = !(isPhoneValid && isEmailValid && cart.length > 0);
         }
         
         // Generate pesan untuk WhatsApp
         function generateWhatsAppMessage() {
-            let message = `Halo, saya ingin membeli aplikasi premium dari AppVault:\n\n`;
+            let message = `Halo, saya ingin membeli aplikasi premium dari TakiStore:\n\n`;
             
             cart.forEach(item => {
-                message += `Barang: ${item.name}*\n`;
+                message += `Barang:${item.name}*\n`;
                 message += `Jumlah: ${item.quantity}x\n`;
                 message += `Subtotal: ${formatRupiah(item.price * item.quantity)}\n\n`;
             });
             
             const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
             message += `💰 *Total Pembayaran: ${formatRupiah(total)}*\n\n`;
-            message += `📋 *Data Pembeli:*\n`;
-            message += `   WhatsApp: ${phoneInput.value}\n`;
-            message += `   Email: ${emailInput.value}\n\n`;
             message += `Silakan konfirmasi ketersediaan dan cara pembayaran. Terima kasih!`;
             
             return encodeURIComponent(message);
@@ -1320,10 +1251,6 @@
                 <div class="order-total">
                     <span>Total</span>
                     <span>${formatRupiah(total)}</span>
-                </div>
-                <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--light-gray);">
-                    <div><strong>Nomor WhatsApp:</strong> ${phoneInput.value}</div>
-                    <div><strong>Email:</strong> ${emailInput.value}</div>
                 </div>
             `;
             
@@ -1368,10 +1295,6 @@
             renderProducts();
             updateCart();
             
-            // Event listener untuk validasi form
-            phoneInput.addEventListener('input', checkFormValidity);
-            emailInput.addEventListener('input', checkFormValidity);
-            
             // Event listener untuk keranjang
             openCartBtn.addEventListener('click', openCart);
             closeCartBtn.addEventListener('click', closeCart);
@@ -1382,8 +1305,8 @@
             
             // Event listener untuk tombol konfirmasi
             confirmBtn.addEventListener('click', () => {
-                // Ganti nomor berikut dengan nomor WhatsApp Anda
-                const phoneNumber = "6287716817586"; // Contoh: 6281234567890
+                // Nomor WhatsApp Anda
+                const phoneNumber = "6287716817586";
                 const message = generateWhatsAppMessage();
                 const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
                 
@@ -1396,12 +1319,8 @@
                 
                 // Kosongkan keranjang
                 cart = [];
-                localStorage.setItem('appvault_cart', JSON.stringify(cart));
+                localStorage.setItem('takistore_cart', JSON.stringify(cart));
                 updateCart();
-                
-                // Reset form
-                phoneInput.value = '';
-                emailInput.value = '';
                 
                 // Tutup keranjang
                 setTimeout(() => {
