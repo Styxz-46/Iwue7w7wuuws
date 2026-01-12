@@ -1222,11 +1222,7 @@
                 message += `Jumlah: ${item.quantity}x\n`;
                 message += `Subtotal: ${formatRupiah(item.price * item.quantity)}\n\n`;
             });
-            
-            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            message += `Total Pembayaran: ${formatRupiah(total)}\n\n`;
-            message += `Silakan konfirmasi ketersediaan dan cara pembayaran. Terima kasih!`;
-            
+        
             return encodeURIComponent(message);
         }
         
