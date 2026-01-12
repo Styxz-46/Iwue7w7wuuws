@@ -978,7 +978,7 @@
                 id: 1,
                 name: "Alight Motion",
                 description: "Aplikasi desain grafis lengkap dengan AI tools untuk desainer profesional.",
-                price: 3.000,
+                price: 3000,
                 image: "alight.png", // Menggunakan file lokal
                 category: "Video Editing"
             },
@@ -1284,9 +1284,9 @@
             let message = `Halo, saya ingin membeli aplikasi premium dari AppVault:\n\n`;
             
             cart.forEach(item => {
-                message += `📱 *${item.name}*\n`;
-                message += `   Jumlah: ${item.quantity}x\n`;
-                message += `   Subtotal: ${formatRupiah(item.price * item.quantity)}\n\n`;
+                message += `Barang: ${item.name}*\n`;
+                message += `Jumlah: ${item.quantity}x\n`;
+                message += `Subtotal: ${formatRupiah(item.price * item.quantity)}\n\n`;
             });
             
             const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
