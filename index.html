@@ -11,6 +11,8 @@
             --primary: #6366f1;
             --primary-dark: #4f46e5;
             --secondary: #10b981;
+            --secondary-dark: #059669;
+            --danger: #ef4444;
             --dark: #1f2937;
             --light: #f9fafb;
             --gray: #6b7280;
@@ -425,6 +427,106 @@
             transform: scale(1.1);
         }
         
+        /* Payment Methods */
+        .payment-section {
+            padding: 0 24px 24px;
+            border-bottom: 1px solid var(--light-gray);
+        }
+        
+        .payment-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: var(--dark);
+        }
+        
+        .payment-methods {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+        
+        .payment-method {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px;
+            border: 2px solid var(--light-gray);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: var(--transition);
+            background: white;
+        }
+        
+        .payment-method:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+        
+        .payment-method.selected {
+            border-color: var(--primary);
+            background: rgba(99, 102, 241, 0.05);
+        }
+        
+        .payment-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+        }
+        
+        .payment-details {
+            flex: 1;
+        }
+        
+        .payment-name {
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        
+        .payment-fee {
+            font-size: 0.85rem;
+            color: var(--secondary);
+            font-weight: 500;
+        }
+        
+        .payment-dana .payment-icon {
+            background: linear-gradient(135deg, #2497f5, #118eea);
+        }
+        
+        .payment-qris .payment-icon {
+            background: linear-gradient(135deg, #00a86b, #008f5b);
+        }
+        
+        .payment-radio {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 2px solid var(--light-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .payment-radio::after {
+            content: '';
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--primary);
+            opacity: 0;
+            transition: var(--transition);
+        }
+        
+        .payment-method.selected .payment-radio::after {
+            opacity: 1;
+        }
+        
         /* Bagian footer yang TETAP TERLIHAT */
         .cart-footer {
             padding: 24px;
@@ -454,7 +556,7 @@
         .confirm-btn {
             width: 100%;
             padding: 16px;
-            background: linear-gradient(to right, var(--secondary), #059669);
+            background: linear-gradient(to right, var(--secondary), var(--secondary-dark));
             color: white;
             border: none;
             border-radius: 12px;
@@ -527,7 +629,7 @@
         .modal-icon {
             width: 80px;
             height: 80px;
-            background: linear-gradient(135deg, var(--secondary), #059669);
+            background: linear-gradient(135deg, var(--secondary), var(--secondary-dark));
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -677,6 +779,10 @@
                 padding: 16px;
             }
             
+            .payment-section {
+                padding: 0 16px 16px;
+            }
+            
             .cart-footer {
                 padding: 16px;
             }
@@ -716,6 +822,10 @@
             .remove-item {
                 order: 1;
                 align-self: flex-end;
+            }
+            
+            .payment-methods {
+                grid-template-columns: 1fr;
             }
             
             /* Untuk mobile, pastikan tombol selalu terlihat */
@@ -794,7 +904,7 @@
     <section class="hero">
         <div class="container">
             <h1>TAKISTORE</h1>
-            <p>App Premium Murah,Terpercaya,Berkualitas,Legal</p>
+            <p>App Premium Murah, Terpercaya, Berkualitas, Legal</p>
         </div>
     </section>
 
@@ -826,6 +936,36 @@
                         <p>Tambahkan beberapa aplikasi untuk memulai</p>
                     </div>
                     <!-- Cart items will be loaded by JavaScript -->
+                </div>
+            </div>
+            
+            <!-- Payment Methods Section -->
+            <div class="payment-section" id="paymentSection">
+                <div class="payment-title">Metode Pembayaran</div>
+                <div class="payment-methods">
+                    <div class="payment-method payment-dana" data-method="dana">
+                        <div class="payment-icon">
+                            <i class="fas fa-wallet"></i>
+                        </div>
+                        <div class="payment-details">
+                            <div class="payment-name">DANA</div>
+                            <div class="payment-fee">Tanpa biaya admin</div>
+                        </div>
+                        <div class="payment-radio"></div>
+                    </div>
+                    <div class="payment-method payment-qris" data-method="qris">
+                        <div class="payment-icon">
+                            <i class="fas fa-qrcode"></i>
+                        </div>
+                        <div class="payment-details">
+                            <div class="payment-name">QRIS</div>
+                            <div class="payment-fee">Semua bank & e-wallet</div>
+                        </div>
+                        <div class="payment-radio"></div>
+                    </div>
+                </div>
+                <div id="paymentError" style="color: var(--danger); font-size: 0.9rem; display: none; text-align: center;">
+                    <i class="fas fa-exclamation-circle"></i> Pilih metode pembayaran terlebih dahulu
                 </div>
             </div>
             
@@ -866,7 +1006,7 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <h4>Tentang</h4>
-                    <p>Kami menyediakan berbagai App Premium dengan harga terjangkau dan aman digunakan Fokus kami adalah memberikan kemudahan akses aplikasi premium.</p>
+                    <p>Kami menyediakan App Premium dengan harga terjangkau dan aman digunakan. Fokus kami adalah memberikan kemudahan akses aplikasi premium.</p>
                 </div>
                 <div class="footer-section">
                     <h4>Kontak</h4>
@@ -887,20 +1027,24 @@
             document.documentElement.style.setProperty('--vh', `${vh}px`);
         }
         
-        // Data produk aplikasi premium dengan gambar lokal baso.png
+        // Data produk aplikasi premium
         const products = [
             {
                 id: 1,
-                name: "Alight Motion Pro",
+                name: "Alight Motion Premium",
                 description: "Aplikasi edit video premium dengan efek profesional untuk content creator.",
                 price: 3000,
                 image: "alight.png",
                 category: "Video Editing"
             }
+            
         ];
 
         // Data keranjang dari localStorage
         let cart = JSON.parse(localStorage.getItem('takistore_cart')) || [];
+        
+        // Variabel untuk metode pembayaran
+        let selectedPaymentMethod = null;
         
         // DOM Elements
         const productsGrid = document.getElementById('productsGrid');
@@ -916,6 +1060,8 @@
         const orderModal = document.getElementById('orderModal');
         const orderSummary = document.getElementById('orderSummary');
         const closeModal = document.getElementById('closeModal');
+        const paymentSection = document.getElementById('paymentSection');
+        const paymentError = document.getElementById('paymentError');
         
         // Format harga ke Rupiah
         function formatRupiah(amount) {
@@ -1010,10 +1156,20 @@
             // Tampilkan atau sembunyikan keranjang kosong
             if (cart.length === 0) {
                 emptyCart.style.display = 'flex';
+                paymentSection.style.display = 'none';
                 confirmBtn.disabled = true;
             } else {
                 emptyCart.style.display = 'none';
-                confirmBtn.disabled = false;
+                paymentSection.style.display = 'block';
+                
+                // Reset metode pembayaran jika keranjang kosong
+                selectedPaymentMethod = null;
+                document.querySelectorAll('.payment-method').forEach(method => {
+                    method.classList.remove('selected');
+                });
+                
+                // Enable/disable tombol konfirmasi berdasarkan pemilihan metode
+                updateConfirmButtonState();
                 
                 // Render item di keranjang
                 renderCartItems();
@@ -1142,16 +1298,53 @@
             updateCart();
         }
         
-        // Generate pesan untuk WhatsApp
+        // Fungsi untuk memilih metode pembayaran
+        function selectPaymentMethod(method) {
+            // Hapus seleksi dari semua metode
+            document.querySelectorAll('.payment-method').forEach(method => {
+                method.classList.remove('selected');
+            });
+            
+            // Tambah seleksi ke metode yang dipilih
+            const selectedElement = document.querySelector(`[data-method="${method}"]`);
+            selectedElement.classList.add('selected');
+            
+            // Simpan metode yang dipilih
+            selectedPaymentMethod = method;
+            
+            // Sembunyikan pesan error
+            paymentError.style.display = 'none';
+            
+            // Update state tombol konfirmasi
+            updateConfirmButtonState();
+        }
+        
+        // Update state tombol konfirmasi berdasarkan kondisi
+        function updateConfirmButtonState() {
+            if (cart.length === 0) {
+                confirmBtn.disabled = true;
+            } else if (selectedPaymentMethod) {
+                confirmBtn.disabled = false;
+            } else {
+                confirmBtn.disabled = true;
+            }
+        }
+        
+        // Generate pesan untuk WhatsApp sesuai format yang diminta
         function generateWhatsAppMessage() {
             let message = `Halo, saya ingin membeli aplikasi premium dari TakiStore:\n\n`;
             
             cart.forEach(item => {
                 message += `Barang: ${item.name}\n`;
-                message += `Jumlah: ${item.quantity}x\n`;
+                message += `Jumlah: ${item.quantity}\n`;
                 message += `Subtotal: ${formatRupiah(item.price * item.quantity)}\n\n`;
             });
-        
+            
+            // Hitung total semua barang
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            message += `Total: ${formatRupiah(total)}\n`;
+            message += `Metode Pembayaran: ${selectedPaymentMethod === 'dana' ? 'DANA' : 'QRIS'}`;
+            
             return encodeURIComponent(message);
         }
         
@@ -1172,7 +1365,20 @@
             });
             
             const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            
+            // Tambahkan metode pembayaran di ringkasan
+            let paymentMethodText = '';
+            if (selectedPaymentMethod === 'dana') {
+                paymentMethodText = 'DANA';
+            } else if (selectedPaymentMethod === 'qris') {
+                paymentMethodText = 'QRIS';
+            }
+            
             summary += `
+                <div class="order-item">
+                    <div><strong>Metode Pembayaran</strong></div>
+                    <div>${paymentMethodText}</div>
+                </div>
                 <div class="order-total">
                     <span>Total</span>
                     <span>${formatRupiah(total)}</span>
@@ -1210,6 +1416,32 @@
             document.body.style.overflow = 'auto';
         }
         
+        // Validasi sebelum konfirmasi
+        function validateBeforeConfirm() {
+            if (cart.length === 0) {
+                alert('Keranjang belanja kosong! Tambahkan produk terlebih dahulu.');
+                return false;
+            }
+            
+            if (!selectedPaymentMethod) {
+                // Tampilkan pesan error
+                paymentError.style.display = 'block';
+                
+                // Scroll ke bagian pembayaran
+                paymentSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                
+                // Animasi error
+                paymentSection.style.animation = 'none';
+                setTimeout(() => {
+                    paymentSection.style.animation = 'shake 0.5s ease-in-out';
+                }, 10);
+                
+                return false;
+            }
+            
+            return true;
+        }
+        
         // Inisialisasi aplikasi
         function init() {
             // Set viewport height untuk mobile
@@ -1219,6 +1451,14 @@
             
             renderProducts();
             updateCart();
+            
+            // Event listener untuk metode pembayaran
+            document.querySelectorAll('.payment-method').forEach(method => {
+                method.addEventListener('click', function() {
+                    const methodName = this.getAttribute('data-method');
+                    selectPaymentMethod(methodName);
+                });
+            });
             
             // Event listener untuk keranjang
             openCartBtn.addEventListener('click', openCart);
@@ -1230,6 +1470,11 @@
             
             // Event listener untuk tombol konfirmasi
             confirmBtn.addEventListener('click', () => {
+                // Validasi sebelum konfirmasi
+                if (!validateBeforeConfirm()) {
+                    return;
+                }
+                
                 // Nomor WhatsApp Anda
                 const phoneNumber = "6287716817586";
                 const message = generateWhatsAppMessage();
@@ -1247,6 +1492,12 @@
                 localStorage.setItem('takistore_cart', JSON.stringify(cart));
                 updateCart();
                 
+                // Reset metode pembayaran
+                selectedPaymentMethod = null;
+                document.querySelectorAll('.payment-method').forEach(method => {
+                    method.classList.remove('selected');
+                });
+                
                 // Tutup keranjang
                 setTimeout(() => {
                     closeCart();
@@ -1255,6 +1506,17 @@
             
             // Event listener untuk tutup modal
             closeModal.addEventListener('click', closeModalFunc);
+            
+            // Tambahkan animasi shake untuk error
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes shake {
+                    0%, 100% { transform: translateX(0); }
+                    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+                    20%, 40%, 60%, 80% { transform: translateX(5px); }
+                }
+            `;
+            document.head.appendChild(style);
         }
         
         // Jalankan aplikasi saat halaman dimuat
