@@ -8,21 +8,21 @@ function setViewportHeight() {
 const products = [
     {
         id: 1,
-        name: "Alight Motion Pro",
+        name: "Alight Motion Premium",
         description: "Aplikasi edit video premium dengan efek profesional untuk content creator.",
         baseImage: "alight.png",
         category: "Video Editing",
         variants: [
             {
                 id: "alight-ios",
-                name: "Alight Motion iOS",
+                name: "Alight Motion iOS 1 Tahun",
                 description: "Versi untuk iPhone dan iPad",
                 price: 3000,
                 image: "alight.png"
             },
             {
                 id: "alight-android",
-                name: "Alight Motion Android",
+                name: "Alight Motion Android 1 Tahun",
                 description: "Versi untuk Android",
                 price: 3000,
                 image: "alight.png"
