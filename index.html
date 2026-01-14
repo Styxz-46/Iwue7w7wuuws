@@ -1,0 +1,1237 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TakiStore | Marketplace Aplikasi Premium</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #10b981;
+            --secondary-dark: #059669;
+            --danger: #ef4444;
+            --dark: #1f2937;
+            --light: #f9fafb;
+            --gray: #6b7280;
+            --light-gray: #e5e7eb;
+            --card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            --hover-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.15);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            background-color: rgba(255, 255, 255, 0.95);
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--dark);
+        }
+        
+        .logo-icon img {
+            width: 36px;
+            height: 36px;
+            object-fit: contain;
+        }
+        
+        .logo-text {
+            font-size: 24px;
+            font-weight: 700;
+            background: linear-gradient(to right, var(--primary), var(--primary-dark));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .nav-cart {
+            position: relative;
+            background: var(--light);
+            border-radius: 12px;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 1px solid var(--light-gray);
+        }
+        
+        .nav-cart:hover {
+            box-shadow: var(--card-shadow);
+            transform: translateY(-2px);
+        }
+        
+        .cart-count {
+            background: var(--primary);
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 80px 0;
+            text-align: center;
+            background: linear-gradient(135deg, #f0f4ff 0%, #f8fafc 100%);
+            border-radius: 0 0 40px 40px;
+            margin-bottom: 60px;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, var(--primary), var(--primary-dark));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+        
+        /* Products Section */
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .section-title i {
+            color: var(--primary);
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 32px;
+            margin-bottom: 80px;
+        }
+        
+        .product-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+            border: 1px solid var(--light-gray);
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--hover-shadow);
+        }
+        
+        .product-image-container {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+            background-color: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .product-image {
+            max-width: 80%;
+            max-height: 80%;
+            object-fit: contain;
+            transition: var(--transition);
+        }
+        
+        .product-card:hover .product-image {
+            transform: scale(1.05);
+        }
+        
+        .product-badge {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: var(--secondary);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .product-content {
+            padding: 24px;
+        }
+        
+        .product-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--dark);
+        }
+        
+        .product-description {
+            color: var(--gray);
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .product-footer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+        
+        .add-to-cart {
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            padding: 14px 32px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1rem;
+            width: 100%;
+            justify-content: center;
+        }
+        
+        .add-to-cart:hover {
+            background: var(--primary-dark);
+            transform: scale(1.05);
+        }
+        
+        /* Variant Modal */
+        .variant-modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.9);
+            background: white;
+            border-radius: 24px;
+            padding: 30px;
+            max-width: 500px;
+            width: 90%;
+            z-index: 1002;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+        
+        .variant-modal.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translate(-50%, -50%) scale(1);
+        }
+        
+        .variant-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+        
+        .variant-header h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+        
+        .close-variant {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--gray);
+            transition: var(--transition);
+        }
+        
+        .close-variant:hover {
+            color: var(--dark);
+            transform: rotate(90deg);
+        }
+        
+        .variant-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 24px;
+            max-height: 300px;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+        
+        .variant-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px;
+            border: 2px solid var(--light-gray);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .variant-item:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+        
+        .variant-item.selected {
+            border-color: var(--primary);
+            background: rgba(99, 102, 241, 0.05);
+        }
+        
+        .variant-name {
+            font-weight: 600;
+            font-size: 1rem;
+        }
+        
+        .variant-price {
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        
+        .variant-description {
+            color: var(--gray);
+            font-size: 0.85rem;
+            margin-top: 4px;
+        }
+        
+        .variant-action {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+        }
+        
+        .variant-quantity {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .quantity-label {
+            font-weight: 600;
+        }
+        
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: white;
+            border-radius: 8px;
+            padding: 8px;
+            border: 1px solid var(--light-gray);
+        }
+        
+        .qty-btn {
+            background: none;
+            border: none;
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: var(--gray);
+            transition: var(--transition);
+            font-size: 1.2rem;
+        }
+        
+        .qty-btn:hover {
+            background: var(--light-gray);
+            color: var(--dark);
+        }
+        
+        .qty-value {
+            width: 40px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        
+        .add-variant-to-cart {
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            padding: 14px 28px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .add-variant-to-cart:hover {
+            background: var(--primary-dark);
+            transform: scale(1.05);
+        }
+        
+        .add-variant-to-cart:disabled {
+            background: var(--light-gray);
+            color: var(--gray);
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        /* Cart Sidebar */
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 380px;
+            height: 100vh;
+            background: white;
+            box-shadow: -5px 0 25px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .cart-sidebar.active {
+            right: 0;
+        }
+        
+        .cart-header {
+            padding: 24px;
+            border-bottom: 1px solid var(--light-gray);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-shrink: 0;
+        }
+        
+        .cart-header h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+        
+        .close-cart {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--gray);
+            transition: var(--transition);
+        }
+        
+        .close-cart:hover {
+            color: var(--dark);
+            transform: rotate(90deg);
+        }
+        
+        /* Container utama untuk konten yang bisa discroll */
+        .cart-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            min-height: 0;
+            overflow: hidden;
+        }
+        
+        .cart-items-wrapper {
+            flex: 1;
+            overflow-y: auto;
+            padding: 24px;
+        }
+        
+        .cart-items {
+            min-height: 100%;
+        }
+        
+        .cart-empty {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--gray);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .cart-empty i {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            color: var(--light-gray);
+        }
+        
+        .cart-item {
+            display: flex;
+            align-items: center;
+            padding: 16px;
+            background: var(--light);
+            border-radius: 12px;
+            margin-bottom: 16px;
+            gap: 16px;
+        }
+        
+        .cart-item-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 10px;
+            object-fit: contain;
+            flex-shrink: 0;
+            background: linear-gradient(135deg, #f0f4ff 0%, #eef2ff 100%);
+            padding: 8px;
+        }
+        
+        .cart-item-details {
+            flex: 1;
+            min-width: 0;
+        }
+        
+        .cart-item-title {
+            font-weight: 600;
+            margin-bottom: 4px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .cart-item-variant {
+            font-size: 0.85rem;
+            color: var(--gray);
+            margin-bottom: 4px;
+        }
+        
+        .cart-item-price {
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        .cart-item-controls {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-shrink: 0;
+        }
+        
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: white;
+            border-radius: 8px;
+            padding: 6px;
+            border: 1px solid var(--light-gray);
+        }
+        
+        .quantity-btn {
+            background: none;
+            border: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: var(--gray);
+            transition: var(--transition);
+        }
+        
+        .quantity-btn:hover {
+            background: var(--light-gray);
+            color: var(--dark);
+        }
+        
+        .remove-item {
+            color: #ef4444;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.25rem;
+            transition: var(--transition);
+        }
+        
+        .remove-item:hover {
+            transform: scale(1.1);
+        }
+        
+        /* Payment Methods */
+        .payment-section {
+            padding: 0 24px 24px;
+            border-bottom: 1px solid var(--light-gray);
+        }
+        
+        .payment-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: var(--dark);
+        }
+        
+        .payment-methods {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+        
+        .payment-method {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px;
+            border: 2px solid var(--light-gray);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: var(--transition);
+            background: white;
+        }
+        
+        .payment-method:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+        
+        .payment-method.selected {
+            border-color: var(--primary);
+            background: rgba(99, 102, 241, 0.05);
+        }
+        
+        .payment-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+        }
+        
+        .payment-details {
+            flex: 1;
+        }
+        
+        .payment-name {
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        
+        .payment-fee {
+            font-size: 0.85rem;
+            color: var(--secondary);
+            font-weight: 500;
+        }
+        
+        .payment-dana .payment-icon {
+            background: linear-gradient(135deg, #2497f5, #118eea);
+        }
+        
+        .payment-qris .payment-icon {
+            background: linear-gradient(135deg, #00a86b, #008f5b);
+        }
+        
+        .payment-radio {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 2px solid var(--light-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .payment-radio::after {
+            content: '';
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--primary);
+            opacity: 0;
+            transition: var(--transition);
+        }
+        
+        .payment-method.selected .payment-radio::after {
+            opacity: 1;
+        }
+        
+        /* Bagian footer yang TETAP TERLIHAT */
+        .cart-footer {
+            padding: 24px;
+            border-top: 1px solid var(--light-gray);
+            flex-shrink: 0;
+            background: white;
+            position: sticky;
+            bottom: 0;
+            z-index: 10;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+        
+        .total-amount {
+            color: var(--primary);
+            font-size: 1.5rem;
+        }
+        
+        .confirm-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(to right, var(--secondary), var(--secondary-dark));
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .confirm-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(16, 185, 129, 0.2);
+        }
+        
+        .confirm-btn:disabled {
+            background: var(--light-gray);
+            color: var(--gray);
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        /* Overlay */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+        
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        /* Confirmation Modal */
+        .modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.9);
+            background: white;
+            border-radius: 24px;
+            padding: 40px;
+            max-width: 500px;
+            width: 90%;
+            z-index: 1001;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+        
+        .modal.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translate(-50%, -50%) scale(1);
+        }
+        
+        .modal-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--secondary), var(--secondary-dark));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            color: white;
+            font-size: 2.5rem;
+        }
+        
+        .modal h3 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+        
+        .modal p {
+            color: var(--gray);
+            text-align: center;
+            margin-bottom: 32px;
+        }
+        
+        .order-summary {
+            background: var(--light);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 32px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--light-gray);
+        }
+        
+        .order-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .order-total {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 700;
+            font-size: 1.25rem;
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 2px solid var(--light-gray);
+        }
+        
+        .close-modal {
+            width: 100%;
+            padding: 16px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .close-modal:hover {
+            background: var(--primary-dark);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 60px 0 30px;
+            margin-top: 80px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-section h4 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        
+        .footer-section p {
+            color: #d1d5db;
+            margin-bottom: 16px;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #9ca3af;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .hero h1 {
+                font-size: 2.75rem;
+            }
+            
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 16px;
+            }
+            
+            .hero {
+                padding: 60px 0;
+            }
+            
+            .hero h1 {
+                font-size: 2.25rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .cart-sidebar {
+                width: 100%;
+                right: -100%;
+            }
+            
+            .navbar {
+                padding: 16px 0;
+            }
+            
+            .logo-text {
+                font-size: 20px;
+            }
+            
+            .cart-items-wrapper {
+                padding: 16px;
+            }
+            
+            .payment-section {
+                padding: 0 16px 16px;
+            }
+            
+            .cart-footer {
+                padding: 16px;
+            }
+            
+            .variant-modal {
+                padding: 20px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.875rem;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+            
+            .product-card {
+                margin: 0 8px;
+            }
+            
+            .modal {
+                padding: 24px;
+            }
+            
+            .cart-item {
+                padding: 12px;
+                gap: 12px;
+            }
+            
+            .cart-item-controls {
+                flex-direction: column;
+                gap: 8px;
+            }
+            
+            .quantity-control {
+                order: 2;
+            }
+            
+            .remove-item {
+                order: 1;
+                align-self: flex-end;
+            }
+            
+            .payment-methods {
+                grid-template-columns: 1fr;
+            }
+            
+            .variant-action {
+                flex-direction: column;
+                gap: 16px;
+            }
+            
+            /* Untuk mobile, pastikan tombol selalu terlihat */
+            .cart-footer {
+                padding-bottom: max(16px, env(safe-area-inset-bottom));
+            }
+        }
+        
+        /* Scrollbar Styling */
+        .cart-items-wrapper::-webkit-scrollbar,
+        .variant-list::-webkit-scrollbar,
+        .order-summary::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        .cart-items-wrapper::-webkit-scrollbar-track,
+        .variant-list::-webkit-scrollbar-track,
+        .order-summary::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 3px;
+        }
+        
+        .cart-items-wrapper::-webkit-scrollbar-thumb,
+        .variant-list::-webkit-scrollbar-thumb,
+        .order-summary::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 3px;
+        }
+        
+        .cart-items-wrapper::-webkit-scrollbar-thumb:hover,
+        .variant-list::-webkit-scrollbar-thumb:hover,
+        .order-summary::-webkit-scrollbar-thumb:hover {
+            background: #a1a1a1;
+        }
+        
+        /* Mobile Browser Address Bar Fix */
+        @supports (padding: max(0px)) {
+            .cart-sidebar {
+                height: 100vh;
+                height: calc(var(--vh, 1vh) * 100);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo">
+                    <div class="logo-icon">
+                        <img src="icon.png">
+                    </div>
+                    <span class="logo-text">TAKISTORE</span>
+                </a>
+                <div class="nav-cart" id="openCart">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span>Keranjang</span>
+                    <div class="cart-count" id="cartCount">0</div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>TAKISTORE</h1>
+            <p>App Premium Murah, Terpercaya, Berkualitas, Legal</p>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="container">
+        <h2 class="section-title">
+            <i class="fas fa-star"></i> App Premium
+        </h2>
+        <div class="products-grid" id="productsGrid">
+            <!-- Products will be loaded by JavaScript -->
+        </div>
+    </section>
+
+    <!-- Variant Modal -->
+    <div class="variant-modal" id="variantModal">
+        <div class="variant-header">
+            <h3 id="variantModalTitle">Pilih Varian</h3>
+            <button class="close-variant" id="closeVariant">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <div class="variant-list" id="variantList">
+            <!-- Variant items will be loaded by JavaScript -->
+        </div>
+        
+        <div class="variant-action">
+            <div class="variant-quantity">
+                <span class="quantity-label">Jumlah:</span>
+                <div class="quantity-selector">
+                    <button class="qty-btn" id="decreaseQty">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                    <span class="qty-value" id="variantQty">1</span>
+                    <button class="qty-btn" id="increaseQty">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+            </div>
+            <button class="add-variant-to-cart" id="addVariantToCart" disabled>
+                <i class="fas fa-cart-plus"></i> Tambah ke Keranjang
+            </button>
+        </div>
+    </div>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Keranjang Belanja</h3>
+            <button class="close-cart" id="closeCart">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <div class="cart-content">
+            <div class="cart-items-wrapper">
+                <div class="cart-items" id="cartItems">
+                    <div class="cart-empty" id="emptyCart">
+                        <i class="fas fa-shopping-bag"></i>
+                        <h4>Keranjang Kosong</h4>
+                        <p>Tambahkan beberapa aplikasi untuk memulai</p>
+                    </div>
+                    <!-- Cart items will be loaded by JavaScript -->
+                </div>
+            </div>
+            
+            <!-- Payment Methods Section -->
+            <div class="payment-section" id="paymentSection">
+                <div class="payment-title">Metode Pembayaran</div>
+                <div class="payment-methods">
+                    <div class="payment-method payment-dana" data-method="dana">
+                        <div class="payment-icon">
+                            <i class="fas fa-wallet"></i>
+                        </div>
+                        <div class="payment-details">
+                            <div class="payment-name">DANA</div>
+                            <div class="payment-fee">Tanpa biaya admin</div>
+                        </div>
+                        <div class="payment-radio"></div>
+                    </div>
+                    <div class="payment-method payment-qris" data-method="qris">
+                        <div class="payment-icon">
+                            <i class="fas fa-qrcode"></i>
+                        </div>
+                        <div class="payment-details">
+                            <div class="payment-name">QRIS</div>
+                            <div class="payment-fee">Semua bank & e-wallet</div>
+                        </div>
+                        <div class="payment-radio"></div>
+                    </div>
+                </div>
+                <div id="paymentError" style="color: var(--danger); font-size: 0.9rem; display: none; text-align: center;">
+                    <i class="fas fa-exclamation-circle"></i> Pilih metode pembayaran terlebih dahulu
+                </div>
+            </div>
+            
+            <div class="cart-footer">
+                <div class="cart-total">
+                    <span>Total</span>
+                    <span class="total-amount" id="totalPrice">Rp 0</span>
+                </div>
+                
+                <button class="confirm-btn" id="confirmBtn" disabled>
+                    <i class="fab fa-whatsapp"></i> Konfirmasi via WhatsApp
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Overlay -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Confirmation Modal -->
+    <div class="modal" id="orderModal">
+        <div class="modal-icon">
+            <i class="fas fa-check"></i>
+        </div>
+        <h3>Pesanan Dikonfirmasi!</h3>
+        <p>Detail pesanan Anda telah dikirim ke WhatsApp kami. Kami akan segera menghubungi Anda untuk proses selanjutnya.</p>
+        
+        <div class="order-summary" id="orderSummary">
+            <!-- Order summary will be loaded by JavaScript -->
+        </div>
+        
+        <button class="close-modal" id="closeModal">Tutup</button>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Tentang</h4>
+                    <p>Kami menyediakan berbagai App Premium dengan harga terjangkau dan aman digunakan. Fokus kami adalah memberikan kemudahan akses aplikasi premium.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Kontak</h4>
+                    <p><i class="fas fa-phone"></i> +62 877-1681-7586</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Indonesia</p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2026 TakiStore. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
